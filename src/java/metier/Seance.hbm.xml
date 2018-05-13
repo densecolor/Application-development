@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 f?vr. 2018 05:43:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Seance" table="SEANCE" catalog="db_21513405" optimistic-lock="version">
+        <id name="codes" type="int">
+            <column name="CODES" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="coach" class="metier.Coach" fetch="select">
+            <column name="CODEC" />
+        </many-to-one>
+        <many-to-one name="programme" class="metier.Programme" fetch="select">
+            <column name="CODEP" not-null="true" />
+        </many-to-one>
+        <many-to-one name="seancetype" class="metier.Seancetype" fetch="select">
+            <column name="CODEST" />
+        </many-to-one>
+        <many-to-one name="utilisateur" class="metier.Utilisateur" fetch="select">
+            <column name="CODEU" not-null="true" />
+        </many-to-one>
+        <property name="libelles" type="string">
+            <column name="LIBELLES" length="65535" />
+        </property>
+        <property name="descrips" type="string">
+            <column name="DESCRIPS" length="65535" />
+        </property>
+        <property name="commentairecoa" type="string">
+            <column name="COMMENTAIRECOA" length="65535" />
+        </property>
+        <property name="nbreps" type="java.lang.Integer">
+            <column name="NBREPS" />
+        </property>
+        <property name="numsemaine" type="java.lang.Integer">
+            <column name="NUMSEMAINE" />
+        </property>
+        <property name="etatlucoa" type="string">
+            <column name="ETATLUCOA" length="65535" />
+        </property>
+        <set name="realiserbilans" table="REALISERBILAN" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODES" not-null="true" />
+            </key>
+            <one-to-many class="metier.Realiserbilan" />
+        </set>
+        <set name="realisernormals" table="REALISERNORMAL" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODES" not-null="true" />
+            </key>
+            <one-to-many class="metier.Realisernormal" />
+        </set>
+        <set name="planifiers" table="PLANIFIER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODES" not-null="true" />
+            </key>
+            <one-to-many class="metier.Planifier" />
+        </set>
+    </class>
+</hibernate-mapping>

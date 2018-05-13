@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 f?vr. 2018 05:43:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Organiser" table="ORGANISER" catalog="db_21513405" optimistic-lock="version">
+        <composite-id name="id" class="metier.OrganiserId">
+            <key-property name="codee" type="int">
+                <column name="CODEE" />
+            </key-property>
+            <key-property name="codest" type="int">
+                <column name="CODEST" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="exercice" class="metier.Exercice" update="false" insert="false" fetch="select">
+            <column name="CODEE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="seancetype" class="metier.Seancetype" update="false" insert="false" fetch="select">
+            <column name="CODEST" not-null="true" />
+        </many-to-one>
+        <property name="ordreo" type="java.lang.Integer">
+            <column name="ORDREO" />
+        </property>
+        <property name="seriest" type="java.lang.Integer">
+            <column name="SERIEST" />
+        </property>
+    </class>
+</hibernate-mapping>

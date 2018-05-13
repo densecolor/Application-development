@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 f?vr. 2018 05:43:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Choisir" table="CHOISIR" catalog="db_21513405" optimistic-lock="version">
+        <composite-id name="id" class="metier.ChoisirId">
+            <key-property name="codep" type="int">
+                <column name="CODEP" />
+            </key-property>
+            <key-property name="codeprofil" type="int">
+                <column name="CODEPROFIL" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="profil" class="metier.Profil" update="false" insert="false" fetch="select">
+            <column name="CODEPROFIL" not-null="true" />
+        </many-to-one>
+        <many-to-one name="programme" class="metier.Programme" update="false" insert="false" fetch="select">
+            <column name="CODEP" not-null="true" />
+        </many-to-one>
+        <property name="dureep" type="java.lang.Integer">
+            <column name="DUREEP" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 f?vr. 2018 05:43:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Seancetype" table="SEANCETYPE" catalog="db_21513405" optimistic-lock="version">
+        <id name="codest" type="int">
+            <column name="CODEST" />
+            <generator class="assigned" />
+        </id>
+        <property name="libellest" type="string">
+            <column name="LIBELLEST" length="65535" />
+        </property>
+        <property name="descripst" type="string">
+            <column name="DESCRIPST" length="65535" />
+        </property>
+        <set name="organisers" table="ORGANISER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODEST" not-null="true" />
+            </key>
+            <one-to-many class="metier.Organiser" />
+        </set>
+        <set name="programmes" table="COMPRENDRE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODEST" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Programme">
+                <column name="CODEP" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="seances" table="SEANCE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODEST" />
+            </key>
+            <one-to-many class="metier.Seance" />
+        </set>
+    </class>
+</hibernate-mapping>

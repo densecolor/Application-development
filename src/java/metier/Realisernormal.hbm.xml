@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 f?vr. 2018 05:43:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Realisernormal" table="REALISERNORMAL" catalog="db_21513405" optimistic-lock="version">
+        <composite-id name="id" class="metier.RealisernormalId">
+            <key-property name="codes" type="int">
+                <column name="CODES" />
+            </key-property>
+            <key-property name="codee" type="int">
+                <column name="CODEE" />
+            </key-property>
+            <key-property name="dater" type="string">
+                <column name="DATER" length="32" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="calendrier2" class="metier.Calendrier2" update="false" insert="false" fetch="select">
+            <column name="DATER" length="32" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exercice" class="metier.Exercice" update="false" insert="false" fetch="select">
+            <column name="CODEE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="seance" class="metier.Seance" update="false" insert="false" fetch="select">
+            <column name="CODES" not-null="true" />
+        </many-to-one>
+        <property name="ordrer" type="java.lang.Integer">
+            <column name="ORDRER" />
+        </property>
+        <property name="resultat" type="string">
+            <column name="RESULTAT" length="65535" />
+        </property>
+        <property name="commentairecli" type="string">
+            <column name="COMMENTAIRECLI" length="32" />
+        </property>
+        <property name="etatlucli" type="string">
+            <column name="ETATLUCLI" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>
